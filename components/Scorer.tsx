@@ -1183,6 +1183,30 @@ function ReportStep({
           )}
         </div>
 
+        {(report.englishHardGap || report.categories.find((c) => c.id === "english")?.earned === 0) && (
+          <div
+            role="alert"
+            className="pop rounded-[26px] border border-red-200/90 p-4 backdrop-blur-xl"
+            style={{
+              background: "linear-gradient(135deg, rgba(254,226,226,0.85) 0%, rgba(255,241,242,0.7) 100%)",
+              boxShadow: "0 10px 30px rgba(232,99,107,0.18), inset 0 1px 0 rgba(255,255,255,0.9)",
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/90 text-lg shadow-sm" aria-hidden>
+                🗣️
+              </span>
+              <div className="min-w-0">
+                <p className="font-extrabold text-red-800">English test required</p>
+                <p className="text-[0.8125rem] font-bold text-red-700">Hard requirement for most EM programmes</p>
+              </div>
+            </div>
+            <p className="mt-3 text-[0.9375rem] leading-relaxed text-red-900">
+              {report.englishFix ??
+                "Book IELTS (target 7.0+) or TOEFL iBT (target 100+); most EM programmes require a valid test score to apply."}
+            </p>
+          </div>
+        )}
         <section className="card p-4">
           <h2 className="px-1 text-lg font-extrabold">Score breakdown</h2>
           <ul className="mt-3 space-y-2.5">

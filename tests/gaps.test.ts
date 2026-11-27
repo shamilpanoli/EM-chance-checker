@@ -39,21 +39,23 @@ describe("fix texts for all 8 categories", () => {
   });
 });
 
-describe("English hard gap rule (deviation from pure 'largest 3')", () => {
-  it("forces English into the top 3 when there is no test, even if 3 others have bigger shortfalls", async () => {
+describe("gaps are the pure 3 largest shortfalls; English hard gap is a separate flag", () => {
+  it("does not force English into the 3 gaps, but flags it", async () => {
     vi.resetModules();
     const { scoreProfile } = await import("@/lib/scoring");
     // Weak academics (28 short), unrelated degree (12 short), no work (15 short), no English test (10 short).
     const ex: Extracted = { ...thin, jobs: [], resumeQuality: { ...thin.resumeQuality, hasPhotoOrDob: false } };
     const a: Answers = { ...answers, cgpa: 5.0, englishType: "NONE", englishScore: null };
     const r = scoreProfile(ex, a, 1, NOW);
-    const pureTop3 = [...r.categories]
-      .map((c) => ({ id: c.id, s: c.max - c.earned }))
-      .sort((x, y) => y.s - x.s)
-      .slice(0, 3)
-      .map((x) => x.id);
-    expect(pureTop3).not.toContain("english");
-    expect(r.gaps.map((g) => g.category)).toContain("english");
-    expect(r.gaps.find((g) => g.category === "english")?.hard).toBe(true);
+    expect(r.gaps.map((g) => g.category)).toEqual(["academics", "work", "degreeFit"]);
+    expect(r.englishHardGap).toBe(true);
+    expect(r.englishFix).toMatch(/IELTS/);
+  });
+  it("no flag when the student has a test", async () => {
+    vi.resetModules();
+    const { scoreProfile } = await import("@/lib/scoring");
+    const r = scoreProfile(thin, answers, 1, NOW);
+    expect(r.englishHardGap).toBe(false);
+    expect(r.englishFix).toBeNull();
   });
 });

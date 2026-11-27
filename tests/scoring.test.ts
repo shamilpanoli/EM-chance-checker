@@ -53,9 +53,12 @@ describe("acceptance-style scoring", () => {
     const r = scoreProfile(weak, weakAnswers, 1, NOW);
     expect(r.total).toBeLessThan(40);
     expect(r.band).toBe("NOT_READY");
-    const eng = r.gaps.find((g) => g.category === "english");
-    expect(eng?.hard).toBe(true);
+    // English is flagged separately; the 3 gaps are the pure largest shortfalls.
+    expect(r.englishHardGap).toBe(true);
+    expect(r.englishFix).toMatch(/IELTS/);
     expect(r.gaps).toHaveLength(3);
+    const largest = [...r.categories].sort((a, b) => b.max - b.earned - (a.max - a.earned))[2];
+    expect(Math.min(...r.gaps.map((g) => g.shortfall))).toBe(largest.max - largest.earned);
   });
 
   it("test 6: typed CGPA overrides resume CGPA", () => {

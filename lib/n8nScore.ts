@@ -47,6 +47,8 @@ export const N8nReportSchema = z.object({
     .optional()
     .default([]),
   targetFieldLabel: z.string(),
+  englishHardGap: z.boolean().optional(),
+  englishFix: z.string().nullable().optional(),
 });
 
 export type N8nInput = { text: string; pageCount: number; answers: Answers; lead: Lead };

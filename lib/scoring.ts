@@ -24,6 +24,10 @@ export type ScoreResult = {
   categories: CategoryScore[];
   gaps: Gap[];
   facts: Record<string, number | string | boolean>;
+  /** True when the student has no usable English test (English earns 0). Shown as a separate banner. */
+  englishHardGap: boolean;
+  /** Fix text for the English hard gap (null when there is none). */
+  englishFix: string | null;
   /** The chosen field that gave the best degree fit (ties: first selected). Used for fix texts. */
   primaryField: FieldId;
 };
@@ -152,7 +156,7 @@ export function scoreProfile(
   const total = categories.reduce((s, c) => s + c.earned, 0);
   const band = BANDS.find((b) => total >= b.min)!;
 
-  // Gaps: largest shortfall first, stable tie-break; English hard gap is always included.
+  // Gaps: the 3 largest shortfalls, stable tie-break. A missing English test is flagged separately (englishHardGap).
   const vars = {
     field: fieldLabel(field),
     months: String(effMonths),
@@ -164,10 +168,7 @@ export function scoreProfile(
     .map((c) => ({ c, shortfall: c.max - c.earned }))
     .filter((x) => x.shortfall > 0)
     .sort((a, b) => b.shortfall - a.shortfall || GAP_TIE_BREAK.indexOf(a.c.id) - GAP_TIE_BREAK.indexOf(b.c.id));
-  let picked = ranked.slice(0, GAP_COUNT);
-  if (englishHardGap && !picked.some((x) => x.c.id === "english")) {
-    picked = [...picked.slice(0, GAP_COUNT - 1), ranked.find((x) => x.c.id === "english")!];
-  }
+  const picked = ranked.slice(0, GAP_COUNT);
   const gaps: Gap[] = picked.map(({ c, shortfall }) => ({
     category: c.id,
     label: c.label,
@@ -189,6 +190,10 @@ export function scoreProfile(
     crmPriority: band.crm,
     categories,
     gaps,
+    englishHardGap,
+    englishFix: englishHardGap
+      ? fillTemplate(FIX_TEMPLATES.english, { ...vars, earned: String(cats.english.earned), max: String(cats.english.max) })
+      : null,
     primaryField: field,
     facts: {
       cgpaPercent: pct,

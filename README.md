@@ -54,5 +54,5 @@ The file and its full text are never written to disk, cache, logs or the lead sh
 - Without Upstash, the rate limit and cache are in-memory per server instance. The rate limit counts only new (uncached) resumes.
 - Work relevance, project "substantial", and the bachelor's field are LLM judgements; borderline resumes can land in a different tier than a human would choose.
 - DOCX has no page count; it is estimated at ~550 words per page. Very long resumes are cut at 60,000 characters.
-- With no English test, English is always one of the 3 gaps (hard requirement), even if other shortfalls are larger.
+- Gaps are the 3 largest shortfalls. A missing English test (English = 0) is shown separately as an "English test required" banner (`englishHardGap` / `englishFix` in the API), not forced into the 3 gaps.
 - n8n mode sends the resume text to n8n (see Privacy). The programme list is a curated set of 58 EM programmes; check availability per intake.
