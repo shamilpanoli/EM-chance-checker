@@ -11,6 +11,8 @@ import { DEFAULT_COUNTRY_CODE, NAME_MSG, checkEmail, checkPhone, digitsOnly, sug
 type Engine = "builtin" | "n8n";
 type UsedEngine = "builtin" | "n8n" | "builtin-fallback";
 const ENGINE_KEY = "em-scorer-engine";
+/** Reviewer-only switch. Hidden only when NEXT_PUBLIC_SHOW_ENGINE_TOGGLE is exactly "false" (then always Built-in). */
+const SHOW_ENGINE_TOGGLE = process.env.NEXT_PUBLIC_SHOW_ENGINE_TOGGLE !== "false";
 const EngineCtx = createContext<{ engine: Engine; setEngine: (e: Engine) => void }>({ engine: "builtin", setEngine: () => {} });
 
 type Step = "about" | "upload" | "questions" | "scoring" | "report";
@@ -101,7 +103,7 @@ export default function Scorer() {
 
   useEffect(() => {
     try {
-      if (localStorage.getItem(ENGINE_KEY) === "n8n") setEngineState("n8n");
+      if (SHOW_ENGINE_TOGGLE && localStorage.getItem(ENGINE_KEY) === "n8n") setEngineState("n8n");
     } catch {}
   }, []);
   function setEngine(e: Engine) {
@@ -147,7 +149,7 @@ export default function Scorer() {
     const fd = new FormData();
     fd.append("lead", JSON.stringify(leadPayload(lead)));
     fd.append("file", file);
-    fd.append("engine", engine);
+    fd.append("engine", SHOW_ENGINE_TOGGLE ? engine : "builtin");
     fd.append(
       "answers",
       JSON.stringify({
@@ -236,14 +238,61 @@ export default function Scorer() {
 
 /* ---------- Shared bits ---------- */
 
+function EngineInfo() {
+  const [open, setOpen] = useState(false);
+  const boxRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: PointerEvent) => {
+      if (boxRef.current && !boxRef.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("pointerdown", onDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+  return (
+    <div ref={boxRef} className="relative">
+      <button
+        type="button"
+        aria-label="About this switch"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className="glass relative flex h-7 w-7 items-center justify-center rounded-full text-[0.875rem] font-extrabold italic text-primary-dark before:absolute before:-inset-2 before:content-['']"
+        style={{ fontFamily: "Georgia, serif" }}
+      >
+        i
+      </button>
+      {open && (
+        <div
+          role="dialog"
+          aria-label="About this switch"
+          className="glass pop absolute right-0 top-full z-30 mt-2 w-[min(260px,calc(100vw-48px))] rounded-2xl p-3 text-left text-[0.8125rem] font-semibold leading-snug text-ink"
+          style={{ background: "rgba(255,255,255,0.88)" }}
+        >
+          <p className="font-extrabold text-primary-dark">Reviewer switch</p>
+          <p className="mt-1">
+            Built-in (default) scores your resume inside this site using Claude. n8n sends the same data to our n8n workflow so reviewers can compare
+            both paths. This switch is for review only and won&apos;t appear in the official student version.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function EngineToggle() {
   const { engine, setEngine } = useContext(EngineCtx);
+  if (!SHOW_ENGINE_TOGGLE) return null;
   const opts: { v: Engine; label: string }[] = [
     { v: "builtin", label: "Built-in" },
     { v: "n8n", label: "n8n" },
   ];
   return (
-    <div className="relative mb-2 flex justify-center">
+    <div className="relative z-20 mb-2 flex items-center justify-center gap-2">
       <div role="radiogroup" aria-label="Scoring engine" className="flex rounded-full border border-white/50 bg-white/25 p-1 backdrop-blur-md">
         {opts.map((o) => (
           <button
@@ -260,6 +309,7 @@ function EngineToggle() {
           </button>
         ))}
       </div>
+      <EngineInfo />
     </div>
   );
 }

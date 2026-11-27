@@ -14,7 +14,7 @@ npm run build                # production build
 
 Deploy: push to GitHub, import the repo in Vercel, add the env vars below under **Project → Settings → Environment Variables**, deploy.
 
-## Environment variables (server only; none use `NEXT_PUBLIC_`, so none reach the browser)
+## Environment variables (all secrets are server-only; only `NEXT_PUBLIC_SHOW_ENGINE_TOGGLE` reaches the browser)
 
 | Name | Required | Purpose |
 |---|---|---|
@@ -23,6 +23,7 @@ Deploy: push to GitHub, import the repo in Vercel, add the env vars below under 
 | `N8N_WEBHOOK_SECRET` | optional | Sent as `X-Webhook-Secret` to both n8n webhooks |
 | `N8N_SCORE_WEBHOOK_URL` | optional | n8n scoring workflow for the "n8n" engine. Receives `{ text, pageCount, answers, lead }`, returns `{ report }` in the built-in report shape. Unset = always Built-in |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | recommended | Shared rate limit + extraction cache across Vercel instances (Vercel → Storage → Upstash) |
+| `NEXT_PUBLIC_SHOW_ENGINE_TOGGLE` | optional | Set to `false` to hide the reviewer Built-in / n8n switch and its info button (then always Built-in). Shown by default. Public by design (not a secret) |
 | `RATE_LIMIT_PER_HOUR` | optional | New scorings per IP per hour. Default `5`; `0` = no limit |
 
 n8n mode is optional; the default Built-in mode calls Claude directly, and the Anthropic key lives only in Vercel environment variables.
