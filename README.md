@@ -25,6 +25,8 @@ Deploy: push to GitHub, import the repo in Vercel, add the env vars below under 
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | recommended | Shared rate limit + extraction cache across Vercel instances (Vercel → Storage → Upstash) |
 | `RATE_LIMIT_PER_HOUR` | optional | New scorings per IP per hour. Default `5`; `0` = no limit |
 
+n8n mode is optional; the default Built-in mode calls Claude directly, and the Anthropic key lives only in Vercel environment variables.
+
 ## Architecture
 
 1. **Lead-first flow** (`components/Scorer.tsx`): About you → upload → 4 questions (CGPA, English, 1–3 target fields, intake) → scoring → full report. Lead, file and answers stay in memory, so every error can be retried without re-uploading.
@@ -35,6 +37,26 @@ Deploy: push to GitHub, import the repo in Vercel, add the env vars below under 
 6. The lead + score summary go to n8n → Google Sheets (`lib/lead.ts`, never blocks the student), then the report is returned.
 7. **Engine toggle** (top of the page, default Built-in): "n8n" sends text + answers + lead to `N8N_SCORE_WEBHOOK_URL` (`lib/n8nScore.ts`, 25 s timeout, Zod-validated reply). On any n8n failure the site falls back to Built-in; the result page says which engine scored it.
 
+## How matching works
+
+`lib/match.ts` picks 3 programmes from `data/programmes.json` (58 Erasmus Mundus programmes, each tagged with up to a few fields and **our own** competitiveness estimate: 1 = less competitive, 2 = moderate, 3 = highly competitive). For each chosen target field, every programme gets points:
+
+- **+10** if the chosen field is the programme's main field, **+7** if it is one of its other fields, **+2** if the programme only covers a related field (see `RELATED_FIELDS` in `config/scoring.ts`).
+- **+3** if the programme also covers the student's bachelor's field.
+- **−1.5 × distance** between the programme's competitiveness and the **target level set by the score band**: Strong → 3, Competitive → 2.5, Needs work → 1.5, Not ready → 1.
+- Programmes scoring 0 or less are dropped. Ties break by programme id, so results are deterministic.
+- With 2–3 fields, each field first gets its best programme (in the order the student picked them); remaining slots go to the best scores across all fields.
+- Tag: **Reach** if competitiveness is more than 0.4 above the target level, **Safer** if more than 0.4 below, otherwise **Match**.
+
+**How research and work feed in.** Research (10 points), work and internships (15), projects (10) and leadership (5) are scored categories alongside academics (30), degree fit (15), English (10) and resume quality (5). They set the total score and band, and the band sets which competitiveness tier is targeted. They do not change matching directly.
+
+**Context from the recruiter.** Erasmus Mundus selection primarily values research papers, experience at large or reputable institutions, and genuine motivation for the specific programme. Overall admission rates are roughly 2–3%, so even a Strong score is not a guarantee.
+
+**Next steps (honest limits).**
+- Weight research output and big-institution experience directly in matching, not only through the band.
+- Add a short motivation / "why this programme" question.
+- Reflect the ~2–3% base rate in the band messages.
+- Replace our competitiveness estimates with official programme data (intake sizes, admission statistics).
 ## Model choice
 
 `claude-haiku-5-5`, structured JSON output, thinking off, effort `low`. Extraction is a simple, well-specified task, so the smallest current model is fast (scoring well under 30 s) and very cheap. The model only reports **facts** (dates, subjects, projects, publications) and never assigns points; scoring is deterministic code, so the same resume always gets the same score.
