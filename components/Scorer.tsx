@@ -274,10 +274,17 @@ function EngineInfo() {
           style={{ background: "rgba(255,255,255,0.88)" }}
         >
           <p className="font-extrabold text-primary-dark">Reviewer switch</p>
-          <p className="mt-1">
-            Built-in (default) scores your resume inside this site using Claude. n8n sends the same data to our n8n workflow so reviewers can compare
-            both paths. This switch is for review only and won&apos;t appear in the official student version.
-          </p>
+          <ul className="mt-1.5 space-y-1.5">
+            <li>
+              <span className="font-extrabold">Built-in (default):</span> scored inside this site with Claude.
+            </li>
+            <li>
+              <span className="font-extrabold">n8n:</span> same data sent to our n8n workflow.
+            </li>
+            <li>
+              <span className="font-extrabold">For review only,</span> not shown in the student version.
+            </li>
+          </ul>
         </div>
       )}
     </div>
