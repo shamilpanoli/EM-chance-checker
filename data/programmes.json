@@ -1,0 +1,593 @@
+[
+ {
+  "id": "bdma",
+  "name": "Big Data Management and Analytics",
+  "acronym": "BDMA",
+  "fields": [
+   "data_science",
+   "cs_ai"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "emai",
+  "name": "Artificial Intelligence",
+  "acronym": "EMAI",
+  "fields": [
+   "cs_ai",
+   "data_science"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "cyberus",
+  "name": "Cyber Security",
+  "acronym": "CYBERUS",
+  "fields": [
+   "cs_ai",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "se4gd",
+  "name": "Software Engineering for the Green Deal",
+  "acronym": "SE4GD",
+  "fields": [
+   "cs_ai",
+   "energy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "lct",
+  "name": "Language and Communication Technologies",
+  "acronym": "LCT",
+  "fields": [
+   "cs_ai",
+   "humanities",
+   "data_science"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "cde",
+  "name": "Copernicus Master in Digital Earth",
+  "acronym": "CDE",
+  "fields": [
+   "data_science",
+   "civil_env",
+   "cs_ai"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "imlex",
+  "name": "Imaging and Light in Extended Reality",
+  "acronym": "IMLEX",
+  "fields": [
+   "physics",
+   "cs_ai",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "jemaro",
+  "name": "Joint European Master in Advanced Robotics",
+  "acronym": "JEMARO",
+  "fields": [
+   "mechanical_robotics",
+   "electrical",
+   "cs_ai"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "mir",
+  "name": "Marine and Maritime Intelligent Robotics",
+  "acronym": "MIR",
+  "fields": [
+   "mechanical_robotics",
+   "electrical",
+   "cs_ai"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "spacemaster",
+  "name": "Joint European Master in Space Science and Technology",
+  "acronym": "SpaceMaster",
+  "fields": [
+   "mechanical_robotics",
+   "physics",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "emship",
+  "name": "Advanced Design in Ship and Offshore Structures",
+  "acronym": "EMship+",
+  "fields": [
+   "mechanical_robotics",
+   "civil_env"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "ewem",
+  "name": "European Wind Energy Master",
+  "acronym": "EWEM",
+  "fields": [
+   "energy",
+   "mechanical_robotics",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "select",
+  "name": "Environomical Pathways for Sustainable Energy Systems",
+  "acronym": "SELECT",
+  "fields": [
+   "energy",
+   "mechanical_robotics",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "mesc",
+  "name": "Materials for Energy Storage and Conversion",
+  "acronym": "MESC+",
+  "fields": [
+   "chemistry_materials",
+   "energy",
+   "physics"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "eurec",
+  "name": "European Master in Renewable Energy",
+  "acronym": "EUREC",
+  "fields": [
+   "energy",
+   "electrical",
+   "mechanical_robotics"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "sahc",
+  "name": "Structural Analysis of Monuments and Historical Constructions",
+  "acronym": "SAHC",
+  "fields": [
+   "civil_env",
+   "humanities"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "frm",
+  "name": "Flood Risk Management",
+  "acronym": "FRM",
+  "fields": [
+   "civil_env",
+   "energy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "groundwatch",
+  "name": "Groundwater and Global Change",
+  "acronym": "GroundwatCH",
+  "fields": [
+   "civil_env",
+   "agri_food"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "mespom",
+  "name": "Environmental Sciences, Policy and Management",
+  "acronym": "MESPOM",
+  "fields": [
+   "civil_env",
+   "energy",
+   "social_policy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "sufonama",
+  "name": "Sustainable Forest and Nature Management",
+  "acronym": "SUFONAMA",
+  "fields": [
+   "agri_food",
+   "civil_env"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "4cities",
+  "name": "Urban Studies",
+  "acronym": "4CITIES",
+  "fields": [
+   "social_policy",
+   "civil_env",
+   "humanities"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "mundus-urbano",
+  "name": "Urban Development and Cooperation",
+  "acronym": "Mundus Urbano",
+  "fields": [
+   "civil_env",
+   "social_policy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "europhotonics",
+  "name": "Europhotonics",
+  "acronym": "Europhotonics",
+  "fields": [
+   "physics",
+   "electrical"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "psrs",
+  "name": "Photonics for Security, Reliability and Safety",
+  "acronym": "PSRS",
+  "fields": [
+   "physics",
+   "electrical"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "emjmd-nuclear-physics",
+  "name": "Nuclear Physics",
+  "acronym": "EMJMD Nuclear Physics",
+  "fields": [
+   "physics"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "mamaself",
+  "name": "Materials Science Exploring Large Scale Facilities",
+  "acronym": "MaMaSELF",
+  "fields": [
+   "physics",
+   "chemistry_materials"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "fame",
+  "name": "Functionalized Advanced Materials and Engineering",
+  "acronym": "FAME+",
+  "fields": [
+   "chemistry_materials",
+   "physics"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "amase",
+  "name": "Advanced Materials Science and Engineering",
+  "acronym": "AMASE",
+  "fields": [
+   "chemistry_materials",
+   "mechanical_robotics"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "serp-chem",
+  "name": "Sustainable Energy and Resources Chemistry",
+  "acronym": "SERP-Chem",
+  "fields": [
+   "chemistry_materials",
+   "energy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "idoh",
+  "name": "Infectious Diseases and One Health",
+  "acronym": "IDOH",
+  "fields": [
+   "biotech_life",
+   "public_health"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "imbrsea",
+  "name": "Marine Biological Resources",
+  "acronym": "IMBRSea",
+  "fields": [
+   "biotech_life",
+   "agri_food"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "tropimundo",
+  "name": "Tropical Biodiversity and Ecosystems",
+  "acronym": "TROPIMUNDO",
+  "fields": [
+   "biotech_life",
+   "agri_food"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "planthealth",
+  "name": "Plant Health in Sustainable Cropping Systems",
+  "acronym": "PlantHealth",
+  "fields": [
+   "agri_food",
+   "biotech_life"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "fipdes",
+  "name": "Food Innovation and Product Design",
+  "acronym": "FIPDes",
+  "fields": [
+   "agri_food",
+   "biotech_life",
+   "chemistry_materials"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "emabg",
+  "name": "Animal Breeding and Genetics",
+  "acronym": "EMABG",
+  "fields": [
+   "agri_food",
+   "biotech_life"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "imrd",
+  "name": "Rural Development",
+  "acronym": "IMRD",
+  "fields": [
+   "agri_food",
+   "econ_business",
+   "social_policy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "europubhealth",
+  "name": "Public Health in Europe",
+  "acronym": "Europubhealth+",
+  "fields": [
+   "public_health",
+   "social_policy"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "eu-hem",
+  "name": "Health Economics and Management",
+  "acronym": "EU-HEM",
+  "fields": [
+   "public_health",
+   "econ_business"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "emle",
+  "name": "European Master in Law and Economics",
+  "acronym": "EMLE",
+  "fields": [
+   "econ_business",
+   "social_policy"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "qem",
+  "name": "Models and Methods of Quantitative Economics",
+  "acronym": "QEM",
+  "fields": [
+   "econ_business",
+   "data_science"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "epog",
+  "name": "Economic Policies for the Global Transition",
+  "acronym": "EPOG+",
+  "fields": [
+   "econ_business",
+   "social_policy",
+   "energy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "emtm",
+  "name": "Tourism Management",
+  "acronym": "EMTM",
+  "fields": [
+   "econ_business",
+   "humanities"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "mundus-mapp",
+  "name": "Public Policy",
+  "acronym": "Mundus MAPP",
+  "fields": [
+   "social_policy",
+   "econ_business"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "emgs",
+  "name": "Global Studies",
+  "acronym": "EMGS",
+  "fields": [
+   "social_policy",
+   "humanities"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "emmir",
+  "name": "Migration and Intercultural Relations",
+  "acronym": "EMMIR",
+  "fields": [
+   "social_policy",
+   "humanities"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "imsiss",
+  "name": "International Security, Intelligence and Strategic Studies",
+  "acronym": "IMSISS",
+  "fields": [
+   "social_policy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "gemma",
+  "name": "Women's and Gender Studies",
+  "acronym": "GEMMA",
+  "fields": [
+   "social_policy",
+   "humanities"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "euroculture",
+  "name": "Euroculture: Society, Politics and Culture in a Global Context",
+  "acronym": "Euroculture",
+  "fields": [
+   "humanities",
+   "social_policy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "globed",
+  "name": "Education Policies for Global Development",
+  "acronym": "GLOBED",
+  "fields": [
+   "education",
+   "social_policy"
+  ],
+  "competitiveness": 2
+ },
+ {
+  "id": "imaesc",
+  "name": "Adult Education for Social Change",
+  "acronym": "IMAESC",
+  "fields": [
+   "education",
+   "social_policy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "emll",
+  "name": "Lifelong Learning: Policy and Management",
+  "acronym": "EMLL",
+  "fields": [
+   "education",
+   "social_policy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "emlex",
+  "name": "European Master in Lexicography",
+  "acronym": "EMLex",
+  "fields": [
+   "humanities"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "crossways",
+  "name": "Crossways in Cultural Narratives",
+  "acronym": "Crossways",
+  "fields": [
+   "humanities",
+   "media_comm"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "tema",
+  "name": "European Territories: Heritage and Development",
+  "acronym": "TEMA+",
+  "fields": [
+   "humanities",
+   "social_policy"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "archmat",
+  "name": "Archaeological Materials Science",
+  "acronym": "ARCHMAT",
+  "fields": [
+   "humanities",
+   "chemistry_materials"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "choreomundus",
+  "name": "Dance Knowledge, Practice and Heritage",
+  "acronym": "Choreomundus",
+  "fields": [
+   "humanities"
+  ],
+  "competitiveness": 1
+ },
+ {
+  "id": "mundus-journalism",
+  "name": "Journalism, Media and Globalisation",
+  "acronym": "Mundus Journalism",
+  "fields": [
+   "media_comm",
+   "social_policy"
+  ],
+  "competitiveness": 3
+ },
+ {
+  "id": "dclead",
+  "name": "Digital Communication Leadership",
+  "acronym": "DCLead",
+  "fields": [
+   "media_comm",
+   "econ_business"
+  ],
+  "competitiveness": 2
+ }
+]
